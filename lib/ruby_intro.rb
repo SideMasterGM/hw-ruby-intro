@@ -24,7 +24,7 @@ def max_2_sum arr
     nuevo.each {
       |valor| b += valor 
     }
-    return valor
+    return b
   end
 end
 
@@ -47,12 +47,6 @@ def sum_to_n? arr, n
         end
         
       end
-      
-      #[0][1] x [1][0] x [2][0] x [3][4]
-      #[0][2] - [1][2] x [2][1] 
-      #[0][3] - [1][3] - [2][3]
-      #[0][4] - [1][4] - [2][4]
-      #[0][5] - [1][5] - [2][5]
     end
   end
   return false
@@ -61,19 +55,46 @@ end
 # Part 2
 
 def hello(name)
-  # YOUR CODE HERE
+  return "Hello, #{name}"
 end
 
 def starts_with_consonant? s
-  # YOUR CODE HERE
+  if s.empty?
+    return false
+  elsif s[0] == "#"
+    return false
+  else
+    return s[0].match(/a|e|i|o|u|A|E|I|O|U/).nil? ? true : false
+  end
 end
 
 def binary_multiple_of_4? s
-  # YOUR CODE HERE
+  
+  if s =~ /^[0-1]+$/
+    if s.to_i(2) % 4 == 0
+      return true
+    else
+      return false
+    end
+  else
+    return false
+  end
+  
 end
 
 # Part 3
 
 class BookInStock
-# YOUR CODE HERE
+  #Permite acceder a las variables de un objeto
+  attr_accessor :isbn, :price
+
+  def initialize isbn, price
+    raise ArgumentError if isbn.empty? || price <= 0
+    @isbn = isbn
+    @price = price
+  end
+
+  def price_as_string
+    format("$%.2f", @price)
+  end
 end
